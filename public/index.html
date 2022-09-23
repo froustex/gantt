@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./DHTMLX.js"></script>
+    <script src="./services.js"></script>
+    <link href="./DHTMLXgantt.css" rel="stylesheet">
+
+    <style type="text/css">
+        html, body{
+          height:100%;
+          padding:0px;
+          margin:0px;
+          overflow: hidden;
+        }
+
+       
+		.filters_wrapper {
+			font: 600 14px Roboto;
+		}
+
+		.filters_wrapper span {
+			font-weight: bold;
+			padding-right: 5px;
+			color: rgba(0,0,0,0.7);
+		}
+
+		.filters_wrapper label {
+			padding-right: 3px;
+		}
+
+	
+      </style>
+</head>
+
+<body>
+    <div id="Menu" style='width:100%; height:10%;'>
+      <button id="bt_Zoom" onclick="myZoom()">Zoom</button>
+      <button id="bt_Filter" onclick="myFilterN1()">Seulement les projets</button>
+      <button id="bt_Filter2" onclick="myFilterTout()">Afficher tout</button>
+      <button id="bt_Filter3" onclick="myFilterP1()">Afficher projet 1</button>
+      <button onclick="myfilter()">clic moi
+      </button>
+      
+    </div>
+    
+    <div id="gantt_here" style='width:100%; height:100%;'></div>
+    
+  <script type="text/javascript">
+
+	gantt.config.date_format = "%Y-%m-%d %H:%i:%s";
+
+	gantt.config.order_branch = true;
+	gantt.config.order_branch_free = true;
+
+	gantt.init("gantt_here");
+	gantt.load("/data");
+ 
+  gantt.ext.zoom.init(zoomConfig);
+  gantt.config.autofit = true;
+  gantt.config.grid_width = 600;
+  myZoom();
+
+  const dp = new gantt.dataProcessor("/data");
+	dp.init(gantt);
+	dp.setTransactionMode("REST");
+  
+  
+  
+
+</script>
+    
+</body>
+</html>
